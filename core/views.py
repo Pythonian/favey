@@ -36,10 +36,12 @@ def result(request):
         if "Items" in response:
             most_recent_item = response["Items"][0]
             item_date = most_recent_item["datetime"]["S"]
-            date_strptime = datetime.strptime(item_date, "%Y-%m-%dT%H:%M:%S.%f")
             temperature = most_recent_item["temperature"]["N"]
             humidity = most_recent_item["humidity"]["N"]
             iaq = most_recent_item["iaq"]["N"]
+            date_strptime = datetime.strptime(
+                item_date, "%Y-%m-%dT%H:%M:%S.%f"
+            ).strftime("%Y-%m-%d %I:%M:%S %p")
         else:
             most_recent_item = None  # No items found
     except Exception as e:
@@ -94,6 +96,16 @@ def result(request):
     else:
         iaq_interpretation = None
 
+    if temp_interpretation and humidity_interpretation and iaq_interpretation == "OK":
+        overall_status = "OPTIMAL"
+        status_badge = "success"
+    elif temp_badge or humidity_badge or iaq_badge == "danger":
+        overall_status = "ALARM"
+        status_badge = "danger"
+    else:
+        overall_status = "WARNING"
+        status_badge = "warning"
+
     context = {
         "most_recent_item": most_recent_item,
         "date_strptime": date_strptime,
@@ -109,6 +121,8 @@ def result(request):
         "iaq_interpretation": iaq_interpretation,
         "iaq_badge": iaq_badge,
         "iaq_response": iaq_response,
+        "overall_status": overall_status,
+        "status_badge": status_badge,
     }
     return render(request, "index.html", context)
 

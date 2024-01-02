@@ -64,7 +64,8 @@
                         <div class="mb-4">
                             <i class="fa-solid fa-smog text-primary-emphasis fa-3x"></i>
                         </div>
-                        <span class="fs-5 d-block mb-2">Humidity ({{ humidity }}&percnt;)</span>
+                        <span class="fs-5 d-block mb-2" title="Relative Humidity Within the Vault">Humidity
+                            ({{ humidity }}&percnt;)</span>
                         <span class="badge text-bg-primary px-2 py-2">{{ humidity_interpretation }}</span>
                         {% if humidity_response %}<p class="text-body-secondary mt-3 fw-bold">{{ humidity_response }}
                         </p>
@@ -83,16 +84,25 @@
                         <div class="mb-4">
                             <i class="fa-solid fa-wind text-primary-emphasis fa-3x"></i>
                         </div>
-                        <span class="fs-5 d-block mb-2">Internal Air Quality ({{ iaq }})</span>
+                        <span class="fs-5 d-block mb-2" title="Air Quality Within the Vault">Internal Air Quality
+                            ({{ iaq }})</span>
                         <span class="badge text-bg-primary px-2 py-2">{{ iaq_interpretation }}</span>
                         {% if iaq_response %}<p class="text-body-secondary mt-3 fw-bold">{{ iaq_response }}</p>
                         {% endif %}
                     </div>
                 </div>
             </div>
+
             {% else %}
             <p>No data found.</p>
             {% endif %}
+        </div>
+        <div class="row mt-4">
+            <div class="d-flex justify-content-center align-items-center">
+                <button class="btn btn-{{ status_badge }} fw-bold text-white">
+                    {{ overall_status }}
+                </button>
+            </div>
         </div>
     </div>
 </section>
