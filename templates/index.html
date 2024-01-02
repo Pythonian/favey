@@ -48,7 +48,8 @@
                         <span class="fs-5 d-block mb-2" title="How Hot The Volt Is">Temperature
                             ({{ temperature }}&deg;C)</span>
                         <span class="badge text-bg-primary px-2 py-2">{{ temp_interpretation }}</span>
-                        {% if temp_response %}<p class="text-body-secondary mt-2">{{ temp_response }}</p>{% endif %}
+                        {% if temp_response %}<p class="text-body-secondary mt-3 fw-bold">{{ temp_response }}</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -65,7 +66,8 @@
                         </div>
                         <span class="fs-5 d-block mb-2">Humidity ({{ humidity }}&percnt;)</span>
                         <span class="badge text-bg-primary px-2 py-2">{{ humidity_interpretation }}</span>
-                        {% if humidity_response %}<p class="text-body-secondary mt-2">{{ humidity_response }}</p>
+                        {% if humidity_response %}<p class="text-body-secondary mt-3 fw-bold">{{ humidity_response }}
+                        </p>
                         {% endif %}
                     </div>
                 </div>
@@ -83,7 +85,8 @@
                         </div>
                         <span class="fs-5 d-block mb-2">Internal Air Quality ({{ iaq }})</span>
                         <span class="badge text-bg-primary px-2 py-2">{{ iaq_interpretation }}</span>
-                        {% if iaq_response %}<p class="text-body-secondary mt-2">{{ iaq_response }}</p>{% endif %}
+                        {% if iaq_response %}<p class="text-body-secondary mt-3 fw-bold">{{ iaq_response }}</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
