@@ -148,6 +148,13 @@ def historical_readings(request):
         # Check if there are items returned
         if "Items" in response:
             historical_readings = response["Items"]
+            historical_readings.sort(key=lambda x: x["datetime"]["S"], reverse=True)
+            for v in historical_readings:
+                item_date = v["datetime"]["S"]
+                formatted_date = datetime.strptime(
+                    item_date, "%Y-%m-%dT%H:%M:%S.%f"
+                ).strftime("%Y-%m-%d %I:%M:%S %p")
+                v["formatted_date"] = formatted_date  # Add formatted date to each item
         else:
             historical_readings = []  # No items found
     except Exception as e:
