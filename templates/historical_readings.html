@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Historical Readings{% endblock title %}
+
+{% block content %}
+<section class="bg-light py-5">
+    <div class="container my-lg-5">
+        <div class="text-center mb-5">
+            <h5 class="text-primary mb-3">Historical Data</h5>
+            <h3>An hour's worth of readings</h3>
+        </div>
+        <div class="row g-4">
+            {% if historical_readings %}
+            <ul>
+                {% for reading in historical_readings %}
+                <li>
+                    <p>Datetime: {{ reading.datetime.S }}</p>
+                    <p>Humidity: {{ reading.humidity.N }}</p>
+                    <!-- Add other fields as needed -->
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No historical readings found.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock content %}
